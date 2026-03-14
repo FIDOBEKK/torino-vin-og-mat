@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Torino 2026 - Vin og mat</title>
     <link rel="stylesheet" href="styles.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
   <body>
     <header class="hero">
@@ -75,68 +76,191 @@
         </ul>
       </section>
 
-      <section class="card">
+      <section
+        class="card lodging-card"
+        x-data="{ area: 'san-salvario' }"
+      >
         <h2>Områder å bo i</h2>
+        <p class="lodging-intro">
+          Velg området som matcher rytmen dere vil ha i Torino: mer puls,
+          mer historie, mest mulig komfort eller en roligere base nær gode
+          nabolagssteder.
+        </p>
 
-        <h3>San Salvario</h3>
-        <p>San Salvario passer godt for en mat- og vintur der kveldene gjerne får vare litt lenger. Området har en avslappet, urban energi, med gode vinbarer, små restauranter og en mer lokal følelse enn de mest polerte delene av sentrum. Et fint valg for dere som vil bo komfortabelt, men også ha byen tett på livet.</p>
-        <p><strong>Fordeler:</strong></p>
-        <ul>
-          <li>Stort utvalg av vinbarer, bistroer og uformelle, gode spisesteder.</li>
-          <li>Kort vei til Porta Nuova og enkel logistikk ved ankomst og dagsturer.</li>
-          <li>Mer levende og lokalt preg enn de mest klassiske turistområdene.</li>
-        </ul>
-        <p><strong>Ulemper:</strong></p>
-        <ul>
-          <li>Noen gater kan være støyende sent på kvelden, særlig i helgene.</li>
-          <li>Kvaliteten på hotell og leiligheter varierer en del fra gate til gate.</li>
-          <li>Mindre elegant helhetsinntrykk enn i de mest sentrale kvartalene.</li>
-        </ul>
+        <div class="lodging-tabs" role="tablist" aria-label="Områder i Torino">
+          <button
+            type="button"
+            class="lodging-tab"
+            :class="{ 'is-active': area === 'san-salvario' }"
+            @click="area = 'san-salvario'"
+          >
+            <span>San Salvario</span>
+            <small>Vinbarer og kveldsliv</small>
+          </button>
+          <button
+            type="button"
+            class="lodging-tab"
+            :class="{ 'is-active': area === 'quadrilatero-romano' }"
+            @click="area = 'quadrilatero-romano'"
+          >
+            <span>Quadrilatero Romano</span>
+            <small>Historisk og livlig</small>
+          </button>
+          <button
+            type="button"
+            class="lodging-tab"
+            :class="{ 'is-active': area === 'centro-porta-nuova' }"
+            @click="area = 'centro-porta-nuova'"
+          >
+            <span>Centro / Porta Nuova</span>
+            <small>Elegant og praktisk</small>
+          </button>
+          <button
+            type="button"
+            class="lodging-tab"
+            :class="{ 'is-active': area === 'vanchiglia' }"
+            @click="area = 'vanchiglia'"
+          >
+            <span>Vanchiglia</span>
+            <small>Rolig og kultivert</small>
+          </button>
+        </div>
 
-        <h3>Quadrilatero Romano</h3>
-        <p>Quadrilatero Romano er for dere som vil bo midt i den historiske stemningen og ha aperitivo, middag og kveldsliv rett utenfor døren. Dette er Torino på sitt mest intime og stemningsfulle, med smale gater, gamle fasader og et rikt utvalg av steder å spise og drikke godt.</p>
-        <p><strong>Fordeler:</strong></p>
-        <ul>
-          <li>Svært høy konsentrasjon av restauranter, cocktailbarer og vinbarer.</li>
-          <li>Historiske omgivelser med mye atmosfære og kort vei til severdigheter.</li>
-          <li>Ideelt for en tur der man helst går mellom lunsj, aperitivo og middag.</li>
-        </ul>
-        <p><strong>Ulemper:</strong></p>
-        <ul>
-          <li>Kan oppleves travelt og noe støyende, særlig på kveldstid.</li>
-          <li>Bil og taxi er mindre praktisk i de trangeste gatene.</li>
-          <li>Noen overnattingssteder ofrer plass og ro for beliggenhet og sjarm.</li>
-        </ul>
+        <article
+          class="lodging-panel"
+          x-show="area === 'san-salvario'"
+          x-transition.opacity.duration.250ms
+          x-cloak
+        >
+          <div class="lodging-panel-head">
+            <div>
+              <p class="lodging-kicker">For dere som vil ha byen tett på livet</p>
+              <h3>San Salvario</h3>
+            </div>
+            <span class="lodging-badge">Best for sen aperitivo</span>
+          </div>
+          <p class="lodging-description">San Salvario passer godt for en mat- og vintur der kveldene gjerne får vare litt lenger. Området har en avslappet, urban energi, med gode vinbarer, små restauranter og en mer lokal følelse enn de mest polerte delene av sentrum. Et fint valg for dere som vil bo komfortabelt, men også ha byen tett på livet.</p>
+          <div class="lodging-columns">
+            <div class="lodging-list">
+              <h4>Fordeler</h4>
+              <ul>
+                <li>Stort utvalg av vinbarer, bistroer og uformelle, gode spisesteder.</li>
+                <li>Kort vei til Porta Nuova og enkel logistikk ved ankomst og dagsturer.</li>
+                <li>Mer levende og lokalt preg enn de mest klassiske turistområdene.</li>
+              </ul>
+            </div>
+            <div class="lodging-list lodging-list-cons">
+              <h4>Ulemper</h4>
+              <ul>
+                <li>Noen gater kan være støyende sent på kvelden, særlig i helgene.</li>
+                <li>Kvaliteten på hotell og leiligheter varierer en del fra gate til gate.</li>
+                <li>Mindre elegant helhetsinntrykk enn i de mest sentrale kvartalene.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
 
-        <h3>Centro / Porta Nuova</h3>
-        <p>Centro og området rundt Porta Nuova er det tryggeste valget for en komfortabel og smidig storbybase. Her bor dere elegant og sentralt, med brede boulevarder, klassiske hotelladresser, gode shoppinggater og enkel tilgang til resten av byen. Mindre bohemsk, men svært behagelig.</p>
-        <p><strong>Fordeler:</strong></p>
-        <ul>
-          <li>Praktisk beliggenhet med togstasjon, taxi og sentrum innen få minutter.</li>
-          <li>Flere komfortable hotellalternativer med jevnt høy standard.</li>
-          <li>Enkelt å kombinere sightseeing, shopping og restaurantbesøk.</li>
-        </ul>
-        <p><strong>Ulemper:</strong></p>
-        <ul>
-          <li>Mindre særpreg og lokalfølelse enn i de mer karakterfulle bydelene.</li>
-          <li>Noen gater nær stasjonen kan føles litt anonyme.</li>
-          <li>Restaurantopplevelsene krever ofte litt mer seleksjon for å finne de mest interessante stedene.</li>
-        </ul>
+        <article
+          class="lodging-panel"
+          x-show="area === 'quadrilatero-romano'"
+          x-transition.opacity.duration.250ms
+          x-cloak
+        >
+          <div class="lodging-panel-head">
+            <div>
+              <p class="lodging-kicker">For dere som vil bo midt i stemningen</p>
+              <h3>Quadrilatero Romano</h3>
+            </div>
+            <span class="lodging-badge">Best for historisk atmosfære</span>
+          </div>
+          <p class="lodging-description">Quadrilatero Romano er for dere som vil bo midt i den historiske stemningen og ha aperitivo, middag og kveldsliv rett utenfor døren. Dette er Torino på sitt mest intime og stemningsfulle, med smale gater, gamle fasader og et rikt utvalg av steder å spise og drikke godt.</p>
+          <div class="lodging-columns">
+            <div class="lodging-list">
+              <h4>Fordeler</h4>
+              <ul>
+                <li>Svært høy konsentrasjon av restauranter, cocktailbarer og vinbarer.</li>
+                <li>Historiske omgivelser med mye atmosfære og kort vei til severdigheter.</li>
+                <li>Ideelt for en tur der man helst går mellom lunsj, aperitivo og middag.</li>
+              </ul>
+            </div>
+            <div class="lodging-list lodging-list-cons">
+              <h4>Ulemper</h4>
+              <ul>
+                <li>Kan oppleves travelt og noe støyende, særlig på kveldstid.</li>
+                <li>Bil og taxi er mindre praktisk i de trangeste gatene.</li>
+                <li>Noen overnattingssteder ofrer plass og ro for beliggenhet og sjarm.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
 
-        <h3>Vanchiglia</h3>
-        <p>Vanchiglia har en roligere, mer kultivert side av Torino, med små kafeer, gode nabolagsrestauranter og nærhet til elven. Det er et område for dere som liker å trekke litt ut av den mest travle sentrumskjernen, uten å gi avkall på gode måltider, vin og en behagelig rytme.</p>
-        <p><strong>Fordeler:</strong></p>
-        <ul>
-          <li>Roligere atmosfære med mange gode, mindre opplagte spisesteder.</li>
-          <li>Kort vei til sentrum til fots, men med litt mer luft og lokalt preg.</li>
-          <li>Passer godt for en mer avslappet og voksen byopplevelse.</li>
-        </ul>
-        <p><strong>Ulemper:</strong></p>
-        <ul>
-          <li>Færre klassiske hotellalternativer enn i Centro og Porta Nuova.</li>
-          <li>Kveldslivet er mer dempet hvis dere vil ha mye liv rett utenfor døren.</li>
-          <li>Ikke like praktisk som Porta Nuova hvis logistikk og togforbindelser er viktigst.</li>
-        </ul>
+        <article
+          class="lodging-panel"
+          x-show="area === 'centro-porta-nuova'"
+          x-transition.opacity.duration.250ms
+          x-cloak
+        >
+          <div class="lodging-panel-head">
+            <div>
+              <p class="lodging-kicker">For dere som vil ha enkel logistikk</p>
+              <h3>Centro / Porta Nuova</h3>
+            </div>
+            <span class="lodging-badge">Best for komfort</span>
+          </div>
+          <p class="lodging-description">Centro og området rundt Porta Nuova er det tryggeste valget for en komfortabel og smidig storbybase. Her bor dere elegant og sentralt, med brede boulevarder, klassiske hotelladresser, gode shoppinggater og enkel tilgang til resten av byen. Mindre bohemsk, men svært behagelig.</p>
+          <div class="lodging-columns">
+            <div class="lodging-list">
+              <h4>Fordeler</h4>
+              <ul>
+                <li>Praktisk beliggenhet med togstasjon, taxi og sentrum innen få minutter.</li>
+                <li>Flere komfortable hotellalternativer med jevnt høy standard.</li>
+                <li>Enkelt å kombinere sightseeing, shopping og restaurantbesøk.</li>
+              </ul>
+            </div>
+            <div class="lodging-list lodging-list-cons">
+              <h4>Ulemper</h4>
+              <ul>
+                <li>Mindre særpreg og lokalfølelse enn i de mer karakterfulle bydelene.</li>
+                <li>Noen gater nær stasjonen kan føles litt anonyme.</li>
+                <li>Restaurantopplevelsene krever ofte litt mer seleksjon for å finne de mest interessante stedene.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article
+          class="lodging-panel"
+          x-show="area === 'vanchiglia'"
+          x-transition.opacity.duration.250ms
+          x-cloak
+        >
+          <div class="lodging-panel-head">
+            <div>
+              <p class="lodging-kicker">For dere som foretrekker en roligere rytme</p>
+              <h3>Vanchiglia</h3>
+            </div>
+            <span class="lodging-badge">Best for rolig base</span>
+          </div>
+          <p class="lodging-description">Vanchiglia har en roligere, mer kultivert side av Torino, med små kafeer, gode nabolagsrestauranter og nærhet til elven. Det er et område for dere som liker å trekke litt ut av den mest travle sentrumskjernen, uten å gi avkall på gode måltider, vin og en behagelig rytme.</p>
+          <div class="lodging-columns">
+            <div class="lodging-list">
+              <h4>Fordeler</h4>
+              <ul>
+                <li>Roligere atmosfære med mange gode, mindre opplagte spisesteder.</li>
+                <li>Kort vei til sentrum til fots, men med litt mer luft og lokalt preg.</li>
+                <li>Passer godt for en mer avslappet og voksen byopplevelse.</li>
+              </ul>
+            </div>
+            <div class="lodging-list lodging-list-cons">
+              <h4>Ulemper</h4>
+              <ul>
+                <li>Færre klassiske hotellalternativer enn i Centro og Porta Nuova.</li>
+                <li>Kveldslivet er mer dempet hvis dere vil ha mye liv rett utenfor døren.</li>
+                <li>Ikke like praktisk som Porta Nuova hvis logistikk og togforbindelser er viktigst.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
       </section>
 
       <section class="card">
